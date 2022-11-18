@@ -43,7 +43,66 @@ public class CelluleDeGrille {
         }
            
     }
+ 
+    public void placerTrouNoir(){
+        avoirTrouNoir= true;
+    
+   }
+    
+   public void supprimerTrouNoir(){
+       avoirTrouNoir= false;
+   }
+    
+       public boolean presenceTrouNoir(){
+       if (avoirTrouNoir==true){
+           return true;
+       }
+       else{
+           return false;
+       }
+       }
+       
+    public Jeton recupererJeton(){
+        Jeton t= jetonCourant;
+       jetonCourant = null;
+       return t;
+        
+    }
+  
+  public void supprimerJeton(){
+       jetonCourant = null;
+   }
+  
+  public boolean presenceDesintegrateur(){
+       if (avoirDesintegrateur==true){
+           return true;
+       }
+       else{
+           return false;
+       }
+   }
+  
+   public void placerDesintegrateurs(){
+       avoirDesintegrateur=true;
+    }
+  
+  public void supprimerDesintegrateur(){
+       avoirDesintegrateur=false;
+  }
+  
+   public void activerTrouNoir(){
+       if (presenceTrouNoir()==true){
+           supprimerJeton();
+           supprimerTrouNoir();
+        }
+      }
+   
 }
+
+
+
+
+
 
 
 
