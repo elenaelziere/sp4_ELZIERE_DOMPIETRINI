@@ -63,7 +63,7 @@ public class CelluleDeGrille {
        }
        
     public Jeton recupererJeton(){
-        Jeton t= jetonCourant;
+       Jeton t= jetonCourant;
        jetonCourant = null;
        return t;
         
@@ -97,6 +97,32 @@ public class CelluleDeGrille {
         }
       }
    
+   @Override
+    public String toString(){
+        String chaine_a_retourner = "";
+        if (jetonCourant == null || avoirTrouNoir==false || avoirDesintegrateur==false){
+           chaine_a_retourner = "." ;
+        }
+        
+        if (lireCouleurDuJeton() == "rouge"){
+        chaine_a_retourner = "R" ;
+        }
+        
+        if (lireCouleurDuJeton() == "jaune"){
+        chaine_a_retourner = "J" ;
+        }
+        
+        if (presenceTrouNoir() == true){
+        chaine_a_retourner = "@" ;
+        }
+        
+         if (presenceDesintegrateur() == true){
+        chaine_a_retourner = "D" ;
+        }
+        
+    return chaine_a_retourner;
+    }
+  
 }
 
 
