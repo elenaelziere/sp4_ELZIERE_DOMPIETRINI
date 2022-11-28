@@ -13,26 +13,40 @@ import java.util.ArrayList;
 public class Joueur {
     private String nom;
     private String couleur;
-    private int nombreDesintegrateurs;
     private ArrayList <Jeton> reserveJetons = new ArrayList <Jeton>();
-
+    private int nombreDesintegrateurs;
+    
+    
     public Joueur (String n) {
-    nom=n;
-    nombreJetonsRestants= 0;
-    nombreDesintegrateurs=0;
-    reserveJetons= null;}
+      nom=n;
+      nombreDesintegrateurs=0;
+      reserveJetons= null;}
     
     public void affecterCouleur(String c){
-    couleur=c;
+      couleur=c;
     }
     
-    public boolean ajouterJeton (Jeton j){
-        if (nombreJetonsRestants!=21){
-            reserveJetons[nombreJetonsRestants]=j;
-            return true;
-        }else{
-            return false;
-        }     
+    public int nombreDeJetons (){
+      int nbJeton = reserveJetons.size;
+      return nbJeton;
+     }
+    
+    public void ajouterJeton (Jeton j){
+       reserveJetons.add(j);   
     }
-            
+    
+    public Jeton jouerJeton() {
+       int n = nombreDeJetons();
+       Jeton j =  reserveJetons.remove(n);
+       return j;
+       
+    }
+    
+    public void obtenirDesintegrateur() {
+       nombreDesintegrateurs+=1;
+    }
+    
+    public void utiliserDesintegrateur() {
+       nombreDesintegrateurs-=1;  
+    }
 }
