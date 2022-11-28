@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package sp4_elziere_dompietrini;
+import java.util.Random;
 
 /**
  *
@@ -21,10 +22,17 @@ public class Partie {
         }
     
     public void  attribuerCouleurAuxJoueurs(){
-        
-        listeJoueurs [0].affecterCouleur("rouge");
-        listeJoueurs [1].affecterCouleur("jaune");
+        Random r = new Random();
+        int c = r.nextInt(1);
+        if (c == 0){
+            listeJoueurs [0].affecterCouleur("rouge");
+            listeJoueurs [1].affecterCouleur("jaune");
+        }if (c == 1){
+            listeJoueurs [0].affecterCouleur("jaune");
+            listeJoueurs [1].affecterCouleur("rouge");
+        }
     }
+    
     
   public void creerEtAffecterJeton(Joueur j){
         
@@ -68,7 +76,7 @@ public class Partie {
             }
         }            
     }
-    public void debuterPartie(){
+    public void lancerPartie(){
         boolean gagne=false;
         int nbrtour=0;
         Scanner sc= new Scanner(System.in);
