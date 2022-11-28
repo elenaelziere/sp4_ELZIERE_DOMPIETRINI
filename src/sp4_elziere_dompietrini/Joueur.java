@@ -27,7 +27,7 @@ public class Joueur {
     }
     
     public int nombreDeJetons (){
-      int nbJeton = reserveJetons.size;
+      int nbJeton = reserveJetons.size();
       return nbJeton;
      }
     
