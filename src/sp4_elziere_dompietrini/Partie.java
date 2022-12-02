@@ -13,6 +13,7 @@ public class Partie {
     private Joueur[] listeJoueurs;
     private Joueur joueurCourant;
     PlateauDeJeu plateau;
+    private Joueur[] ListeJoueurs;
     
     
     public Partie(Joueur Joueur1, Joueur Joueur2){
@@ -33,76 +34,52 @@ public class Partie {
         }
     }
     
-    
-  public void creerEtAffecterJeton(Joueur j){
-        
+    public void creerEtAffecterJeton(Joueur joueur) {
+        Jeton[] jetons = new Jeton[30];
+        for (int i = 0; i < 30; i++) {
+            jetons[i] = new Jeton(joueur.couleur);
+            joueur.ajouterJeton(jetons[i]);
+        }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public void initialiserPartie(){
-        plateau=new PlateauDeJeu();
-        
-        for (int i=0;i<21;i++){
-            if (listeJoueurs[0].couleur=="rouge"){
-                Jeton JetonJoueur1=new Jeton ("rouge");
-                listeJoueurs[0].ajouterJeton(JetonJoueur1);
-                Jeton JetonJoueur2=new Jeton ("jaune");
-                listeJoueurs[1].ajouterJeton(JetonJoueur2);
+ 
+    public void placerTrousNoirsEtDesintegrateurs() {
+    Random l = new Random();
+        Random c = new Random();
+        for (int i = 0; i < 3; i++) {
+            int ligne = l.nextInt(0, 6);
+            int colonne = c.nextInt(0, 7);
+            if (plateau.presenceTrouNoir(ligne, colonne) == false && plateau.presenceDesintegrateur(ligne, colonne) == false) {
+                plateau.placerTrouNoir(ligne, colonne);
+                plateau.placerDesintegrateur(ligne, colonne);
+            } else {
+                i -= 1;
             }
-            else{
-                Jeton JetonJoueur1=new Jeton ("jaune");
-                listeJoueurs[0].ajouterJeton(JetonJoueur1);
-                Jeton JetonJoueur2=new Jeton ("rouge");
-                listeJoueurs[1].ajouterJeton(JetonJoueur2);
+        }
+        for (int j = 0; j < 2; j++) {
+            int ligne = l.nextInt(0, 6);
+            int colonne = c.nextInt(0, 7);
+            if (plateau.presenceDesintegrateur(ligne, colonne) == false) {
+                plateau.placerDesintegrateur(ligne, colonne);
+            } else {
+                j -= 1;
             }
-        }            
+        }
+        for (int k = 0; k < 2; k++) {
+            int ligne = l.nextInt(0, 6);
+            int colonne = c.nextInt(0, 7);
+            if (plateau.presenceTrouNoir(ligne, colonne) == false && plateau.presenceDesintegrateur(ligne, colonne) == false) {
+                plateau.placerTrouNoir(ligne, colonne);
+            } else {
+                k -= 1;
+            }
+        }
     }
-    public void lancerPartie(){
-        boolean gagne=false;
-        int nbrtour=0;
-        Scanner sc= new Scanner(System.in);
-        while(gagne==false){
-            if (nbrtour%2==0){
-                joueurCourant=listeJoueurs [0];
-            } else joueurCourant=listeJoueurs [1];
-            
-            Jeton un_jeton= new Jeton(joueurCourant.couleur);
-            if (joueurCourant.ajouterJeton (un_jeton)==true){
-                int colonne=10;
-                while (colonne<0 ||colonne>6){
-                    System.out.println("Choisissez une colonne entre 0 et 6");
-                    colonne=sc.nextInt();
-                }
-                grilleJeu.ajouterJetonsDansColonne(un_jeton, colonne);
-            }
-            else {
-                System.out.println("Vous n'avez plus de jetons");
-            }
-            grilleJeu.afficherGrilleSurConsole();
-            gagne=grilleJeu.etreGagantePourJoueur(joueurCourant);
-            if (grilleJeu.etreRemplie()==true){
-                System.out.println("La grille est remplie, aucun joueur n'a gagné");
-                break;
-            }
-        }  
-    }  
+ 
+    public void initialiserPartie() {
+        attribuerCouleurAuxJoueurs();
+        creerEtAffecterJeton(ListeJoueurs[0]);
+        creerEtAffecterJeton(ListeJoueurs[1]);
+        placerTrousNoirsEtDesintegrateurs();
+    }
+   
 }
