@@ -22,8 +22,20 @@ public class Joueur {
       nombreDesintegrateurs=0;
       reserveJetons= null;}
     
+    public void leNom(String le_n){
+        nom = le_n;
+    }
+    
+    public String afficherNom (){
+        return nom;
+    }
+    
     public void affecterCouleur(String c){
       couleur=c;
+    }
+    
+    public String afficherCouleur(){
+        return couleur;
     }
     
     public int nombreDeJetons (){
@@ -49,4 +61,8 @@ public class Joueur {
     public void utiliserDesintegrateur() {
        nombreDesintegrateurs-=1;  
     }
+
+    
+
+   
 }

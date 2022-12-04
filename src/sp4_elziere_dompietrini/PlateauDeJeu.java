@@ -97,7 +97,7 @@ public boolean ajouterJetonsDansColonne(Jeton jeton1,int colonne){
                    return grille[ligne][colonne].lireCouleurDuJeton();
                }
               
-               public boolean etreGagnantePourJoueur(Joueur unJoueur){
+               public boolean etreGagnantePourCouleur(String uneCouleur){
                    boolean resultat=false;
                   
                 for (int i=0; i<4 ; i++){      //ici on verifie ligne gagnante 
